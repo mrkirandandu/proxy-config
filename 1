@@ -1,15 +1,15 @@
 #!/bin/bash
  
 # Parent folder
-parent_folder="/opt/cert/proxy-config/certificates/"
+parent_folder="/opt/cert/proxy-config"
  
 # Get the most recently modified folder based on modification time
 recent_folders=($(ls -dt "$parent_folder" | head -n 10))
  
 # Iterate through recent folders
-for recentfolder in "$recent_folders"; do
+while read -r subfolder; do    
 # Iterate through subfolders
-    for subfolder in "$recentfolder"; do
+    for subfolder in "$recent_folder"; do
         # Check if both certificate and key files exist
         cert="$subfolder/$(basename "$subfolder").crt"
         key="$subfolder/$(basename "$subfolder").key"
